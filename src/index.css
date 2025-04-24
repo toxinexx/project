@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Button animation for 3D effect */
+@keyframes button-press {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
+
+.button-press {
+  animation: button-press 0.2s ease-in-out;
+}
+
+/* Animated gradient background */
+.gradient-background {
+  background: linear-gradient(90deg, #8b5cf6, #6d28d9, #4c1d95, #6d28d9, #8b5cf6);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Card tile with purple border */
+.crm-tile {
+  @apply bg-white rounded-lg shadow-sm border-2 border-primary-100;
+}
+
+/* iPhone specific styles */
+.iphone-frame {
+  filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  /* Hide scrollbar on mobile */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Make scrolling smoother on mobile */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Ensure buttons are easy to tap */
+  button, 
+  a, 
+  [role="button"],
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Form inputs optimized for mobile */
+  input, select, textarea {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+}
+
+/* Responsive table for mobile */
+.responsive-table {
+  @apply w-full;
+}
+
+@media (max-width: 768px) {
+  .responsive-table thead {
+    @apply hidden;
+  }
+  
+  .responsive-table tbody tr {
+    @apply block border-b border-gray-200 my-2;
+  }
+  
+  .responsive-table tbody td {
+    @apply block text-right py-2 px-4 relative pl-28;
+  }
+  
+  .responsive-table tbody td::before {
+    content: attr(data-label);
+    @apply absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-500;
+  }
+}
+
+/* Mobile-friendly card layout */
+.mobile-card {
+  @apply hidden;
+}
+
+@media (max-width: 768px) {
+  .mobile-card {
+    @apply block;
+  }
+  
+  .desktop-table {
+    @apply hidden;
+  }
+}
